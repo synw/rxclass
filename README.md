@@ -54,7 +54,7 @@ All the state properties are reactive. Usage in a vuejs component:
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { reactiveConf } from "@/conf";
+import reactiveConf from "@/conf";
 
 export default defineComponent({
   data() {
