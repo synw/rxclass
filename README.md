@@ -6,6 +6,12 @@ A set of stateful abstract classes with reactive properties
 - [Persistent data class](#persistent-data-class): a class that persists it's own state to localstorage
 - [Network data class](#network-data-class): a class with methods to fetch data
 
+```bash
+npm install rxclass
+# or 
+yarn add rxclass
+```
+
 ## Base reactive class
 
 ### Create a data class
