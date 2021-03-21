@@ -85,7 +85,7 @@ export default class ReactiveConf extends ReactivePersistentDataClass {
     // load initial data from localstorage
     this.load()
   }
-}#network-data-class
+}
 ```
 
 ## Network data class
