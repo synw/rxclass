@@ -12,7 +12,7 @@ export default abstract class RxStorageClass extends RxClass {
     for (const key of Object.keys(this.store)) {
       this[key] = computed(() => this.store[key]);
     }
-    this.loadIntialStoreData();
+    this.loadInitialStoreData();
   }
 
   mutate(key: string, value: any) {// eslint-disable-line
@@ -24,15 +24,30 @@ export default abstract class RxStorageClass extends RxClass {
     }
   }
 
-  private loadIntialStoreData() {
+  private loadInitialStoreData() {
     for (const key of Object.keys(this.store)) {
       const item = localStorage.getItem(`${this.key}_${key}`);
       if (item !== null) {
+        // object or array
         if (item.startsWith("[") || item.startsWith("{")) {
           this.store[key] = JSON.parse(item);
         } else {
-          this.store[key] = item;
+          const n = Number(item);
+          // boolean
+          if (item === "false" || item === "true") {
+            this.store[key] = item === "true";
+          }
+          // numeric
+          else if (!isNaN(n)) {
+            this.store[key] = n;
+          }
+          // string
+          else {
+            this.store[key] = item;
+          }
         }
+      } else {
+        this.store[key] = null;
       }
     }
   }
