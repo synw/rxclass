@@ -1,5 +1,5 @@
 import { reactive, computed, ComputedRef } from "@vue/reactivity";
-import ReactiveDataClass from "./base";
+import RxClass from "./base";
 
 function baseHeader(method: string): RequestInit { // eslint-disable-line
   return {
@@ -11,11 +11,11 @@ function baseHeader(method: string): RequestInit { // eslint-disable-line
   } as RequestInit;
 }
 
-export default abstract class ReactiveNetworkDataClass extends ReactiveDataClass {
+export default abstract class RxRestClass extends RxClass {
   private _dataset = reactive<Record<string, Array<any> | Record<string, any>>>({ data: {} }); // eslint-disable-line
   public serverUrl: string;
 
-  constructor(state: Record<string, any>, serverUrl?: string) {// eslint-disable-line
+  constructor(serverUrl?: string, state: Record<string, any> = {}) {// eslint-disable-line
     super(state)
     this.serverUrl = serverUrl ?? "";
   }

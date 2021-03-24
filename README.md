@@ -1,10 +1,10 @@
-# Reactive data class
+# Rxclass
 
 A set of stateful abstract classes with reactive properties
 
 - [Reactive data class](#base-reactive-class): base class with reactive properties
 - [Persistent data class](#persistent-data-class): a class that persists it's own state to localstorage
-- [Network data class](#network-data-class): a class with methods to fetch data
+- [Rest data class](#network-data-class): a class with rest methods to manipulate data
 
 ```bash
 npm install rxclass
@@ -12,14 +12,14 @@ npm install rxclass
 yarn add rxclass
 ```
 
-## Base reactive class
+## Reactive data class
 
 ### Create a data class
 
 ```typescript
-import  { ReactiveDataClass } from "rxclass";
+import  { RxClass } from "rxclass";
 
-export default class ReactiveConf extends ReactiveDataClass {
+export default class ReactiveConf extends RxClass {
   constructor() {
     const state = {
       prop1: true,
@@ -41,10 +41,10 @@ Initialize and set a property value
 ```typescript
 const reactiveConf = new ReactiveConf();
 // set a new value for a prop
-reactiveConf.prop("prop1", false);
+reactiveConf.state.prop1 = false;
 ```
 
-All the state properties are reactive. Usage in a vuejs component:
+All the state properties are reactive. Usage in a Vuejs component:
 
 ```html
 <template>
@@ -68,42 +68,51 @@ export default defineComponent({
 
 ## Persistent data class
 
-All the state data will be automatically persisted to localstorage
+All the store data will be automatically persisted to localstorage
 
 ```typescript
-import { ReactivePersistentDataClass } from "rxclass";
+import { RxStorageClass } from "rxclass";
 
-export default class ReactiveConf extends ReactivePersistentDataClass {
-  constructor() {// eslint-disable-line
-    const state = {
-      prop1: {
-        subprop1: true
-      },
+export default class User extends RxStorageClass {
+  public name: string;
+
+  constructor(name: string) {
+    // persistent state
+    const store = {
+      isLoggedIn: false
     }
-    // provide a key for storage
-    super(state, "rconf")
-    // load initial data from localstorage
-    this.load()
+    const key = "user";
+    // provide a storage key for the class instance
+    super(key, store);
+    this.name = name;
   }
 }
 ```
 
-## Network data class
-
-A class with network methods to fetch data
+Read a store property:
 
 ```typescript
-import { ReactiveNetworkDataClass } from "rxclass";
+const user = User("anonymous");
+const isLoggedIn = user.isLoggedIn;
+```
 
-export default class ReactiveConf extends ReactiveNetworkDataClass {
+Mutate a store property:
+
+```typescript
+user.mutate("isLoggedIn", true);
+```
+
+## Rest data class
+
+A class with rest network methods to manipulate data
+
+```typescript
+import { RxRestClass } from "rxclass";
+
+export default class ReactiveConf extends RxRestClass {
   constructor() {// eslint-disable-line
-    const state = {
-      prop1: {
-        subprop1: true
-      },
-    }
     const serverUrl = "http://localhost:8000"
-    super(state, serverUrl)
+    super(serverUrl)
   }
 }
 

@@ -1,5 +1,5 @@
-import ReactiveDataClass from "./base";
-import ReactivePersistentDataClass from "./persistence";
-import ReactiveNetworkDataClass from "./network";
+import RxClass from "./base";
+import RxStorageClass from "./persistence";
+import RxRestClass from "./rest";
 
-export { ReactiveDataClass, ReactivePersistentDataClass, ReactiveNetworkDataClass }
+export { RxClass, RxStorageClass, RxRestClass }
