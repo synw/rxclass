@@ -5,13 +5,15 @@ import RxClass from "./base";
 export default abstract class RxRestClass extends RxClass {
   public objectDataset = reactive<Record<string, any>>({}); // eslint-disable-line
   public arrayDataset = reactive<Array<any>>([]); // eslint-disable-line
-  private _isLoading = ref<boolean>(false)
+  private _isLoading = ref<boolean>(false);
+  private credentials: string | null;
 
   public serverUrl: string;
 
-  constructor(serverUrl?: string, state: Record<string, any> = {}) { // eslint-disable-line
+  constructor(serverUrl?: string, state: Record<string, any> = {}, credentials?: string) { // eslint-disable-line
     super(state)
     this.serverUrl = serverUrl ?? "";
+    this.credentials = credentials ?? null;
   }
 
   get isLoading() {
@@ -19,13 +21,16 @@ export default abstract class RxRestClass extends RxClass {
   }
 
   private get getHeader(): RequestInit {
-    return {
+    const h = {
       method: "get",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       }
     } as RequestInit;
+    if (this.credentials !== null) {
+      h.credentials = this.credentials as RequestCredentials;
+    }
+    return h;
   }
 
   async fetchGetObject(url: string): Promise<Record<string, any>> { // eslint-disable-line
