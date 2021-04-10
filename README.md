@@ -124,7 +124,3 @@ Mutate a store property:
 ```typescript
 user.store.isLoggedIn.value = true;
 ```
-
-## Examples
-
-[Examples](tree/main/examples)

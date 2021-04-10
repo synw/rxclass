@@ -2,7 +2,7 @@ import { Ref, customRef } from "@vue/reactivity";
 import RxClass from "./base";
 
 
-export default abstract class RxDebounced extends RxClass {
+export default class RxDebounced extends RxClass {
   private _debouncedState: Record<string, any> = {}; // eslint-disable-line
   private _drefs: Record<string, Ref<any>> = {}; // eslint-disable-line
   private _timeouts: Record<string, NodeJS.Timeout | null> = {}

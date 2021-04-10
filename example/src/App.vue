@@ -1,9 +1,9 @@
 <template>
   <div>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
       <router-link to="/rxclass">RxClass</router-link> |
-      <router-link to="/rxstorageclass">RxStorageClass</router-link>
+      <router-link to="/rxstorageclass">RxStorageClass</router-link> |
+      <router-link to="/rxdebouncedclass">RxDebouncedClass</router-link>
     </div>
     <router-view />
   </div>

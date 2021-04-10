@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: () => import('../views/HomeView.vue')
+    redirect: "/rxclass"
   },
   {
     path: '/rxclass',
@@ -12,6 +12,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/rxstorageclass',
     component: () => import('../views/RxStorageClassView.vue')
+  },
+  {
+    path: '/rxdebouncedclass',
+    component: () => import('../views/RxdebouncedView.vue')
   }
 ]
 
