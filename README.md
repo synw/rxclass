@@ -70,8 +70,8 @@ export default defineComponent({
 Add a callback when a prop is modified:
 
 ```typescript
-import { RxParam } from "../rxclass/interfaces";
-import RxClass from "../rxclass/base";
+import { RxParam } from "rxclass";
+import RxClass from "rxclass";
 
 export default class ReactiveConf extends RxClass {
   constructor() {

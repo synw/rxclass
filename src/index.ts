@@ -3,5 +3,6 @@ import RxClass from "./base";
 import RxStorageClass from "./persistence";
 import RxRestClass from "./rest";
 import RxDebounced from "./debounced";
+import { RxParam } from "./interfaces";
 
-export { RxClass, RxStorageClass, RxRestClass, RxDebounced }
+export { RxParam, RxClass, RxStorageClass, RxRestClass, RxDebounced }
