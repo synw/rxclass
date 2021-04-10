@@ -4,7 +4,6 @@ A set of stateful abstract classes with reactive properties
 
 - [Reactive data class](#base-reactive-class): base class with reactive properties
 - [Persistent data class](#persistent-data-class): a class that persists it's own state to localstorage
-- [Rest data class](#network-data-class): a class with rest methods to manipulate data
 
 ```bash
 npm install rxclass
