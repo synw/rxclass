@@ -41,7 +41,7 @@ Initialize and set a property value
 ```typescript
 const reactiveConf = new ReactiveConf();
 // set a new value for a prop
-reactiveConf.state.prop1 = false;
+reactiveConf.prop1.value = false;
 ```
 
 All the state properties are reactive. Usage in a Vuejs component:
@@ -49,7 +49,7 @@ All the state properties are reactive. Usage in a Vuejs component:
 ```html
 <template>
   <!-- this prop is reactive -->
-  <div>{{ prop1 }}</div>
+  <div>{{ reactiveConf.prop1.value }}</div>
 </template>
 
 <script lang="ts">
@@ -59,12 +59,35 @@ import reactiveConf from "@/conf";
 export default defineComponent({
   data() {
     return {
-      prop1: reactiveConf.prop1,
+      prop1: reactiveConf,
     };
   }
 });
 </script>
 ```
+
+### Callback
+
+Add a callback when a prop is modified:
+
+```typescript
+import { RxParam } from "../rxclass/interfaces";
+import RxClass from "../rxclass/base";
+
+export default class ReactiveConf extends RxClass {
+  constructor() {
+    const state = {
+      prop5: {
+        value: "val",
+        callback: (v: string) => console.log("Prop 5 changed to", v)
+      } as RxParam
+    };
+    super(state);
+  }
+}
+```
+
+The callback will be executed each time the property is changed
 
 ## Persistent data class
 
@@ -93,37 +116,15 @@ Read a store property:
 
 ```typescript
 const user = User("anonymous");
-const isLoggedIn = user.isLoggedIn;
+const isLoggedIn = user.store.isLoggedIn.value;
 ```
 
 Mutate a store property:
 
 ```typescript
-user.mutate("isLoggedIn", true);
+user.store.isLoggedIn.value = true;
 ```
 
-## Rest data class
+## Examples
 
-A class with rest network methods to manipulate data
-
-```typescript
-import { RxRestClass } from "rxclass";
-
-export default class ReactiveDataModel extends RxRestClass {
-  constructor() {// eslint-disable-line
-    const serverUrl = "http://localhost:8000"
-    super(serverUrl)
-  }
-}
-
-const dataManager = new ReactiveDataModel()
-// get array data
-const data = await dataManager.fetchGetArray<Array<Record<string, any>>>("/some/endpoint")
-// the data is now available in a reactive prop
-console.log(dataManager.arrayDataset)
-
-// get object data
-const data2 = dataManager.fetchGetObject("/some/endpoint")
-// the data is now available in a reactive prop
-console.log(dataManager.objectDataset)
-```
+[Examples](tree/main/examples)

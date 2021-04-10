@@ -1,10 +1,10 @@
-import { reactive, ref } from "@vue/reactivity";
+import { reactive, ref, Ref } from "@vue/reactivity";
 import RxClass from "./base";
 
 
 export default abstract class RxRestClass extends RxClass {
-  public objectDataset = reactive<Record<string, any>>({}); // eslint-disable-line
-  public arrayDataset = reactive<Array<any>>([]); // eslint-disable-line
+  public objectDataset = ref<Record<string, any>>({}); // eslint-disable-line
+  public arrayDataset = ref<Array<any>>([]); // eslint-disable-line
   private _isLoading = ref<boolean>(false);
   private credentials: string | null;
 
@@ -16,7 +16,7 @@ export default abstract class RxRestClass extends RxClass {
     this.credentials = credentials ?? null;
   }
 
-  get isLoading() {
+  get isLoading(): Ref<boolean> {
     return this._isLoading;
   }
 
@@ -34,7 +34,7 @@ export default abstract class RxRestClass extends RxClass {
   }
 
   async fetchGetObject(url: string): Promise<Record<string, any>> { // eslint-disable-line
-    this._isLoading = ref<boolean>(true);
+    this._isLoading.value = true;
     const uri = this.serverUrl + url;
     const response = await fetch(uri, this.getHeader);
     //console.log("DATA", response)
@@ -42,13 +42,13 @@ export default abstract class RxRestClass extends RxClass {
       throw new Error(response.statusText);
     }
     const data = await response.json() as Record<string, any>; // eslint-disable-line
-    this.objectDataset = data;
-    this._isLoading = ref<boolean>(false);
+    this.objectDataset.value = data;
+    this._isLoading.value = false;
     return data;
   }
 
   async fetchGetArray<T>(url: string): Promise<Array<T>> {
-    this._isLoading = ref<boolean>(true);
+    this._isLoading.value = true;
     const uri = this.serverUrl + url;
     const response = await fetch(uri, this.getHeader);
     //console.log("DATA", response)
@@ -56,8 +56,8 @@ export default abstract class RxRestClass extends RxClass {
       throw new Error(response.statusText);
     }
     const data = await response.json() as Array<T>; // eslint-disable-line
-    this.arrayDataset = data;
-    this._isLoading = ref<boolean>(false);
+    this.arrayDataset.value = data;
+    this._isLoading.value = false;
     return data;
   }
 }
