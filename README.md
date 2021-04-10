@@ -138,7 +138,7 @@ A class where properties are set after a delay. Form example:
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RxParam, RxDebounced } from "../rxclass";
+import { RxParam, RxDebounced } from "rxclass";
 
 export default defineComponent({
   setup() {
