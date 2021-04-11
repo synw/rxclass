@@ -143,6 +143,7 @@ import { RxParam, RxDebounced } from "rxclass";
 export default defineComponent({
   setup() {
     const form = new RxDebounced(
+      // debounced props
       {
         name: {
           value: "",
@@ -155,6 +156,7 @@ export default defineComponent({
           },
         } as RxParam,
       },
+      // regular ephemeral state
       {
         nameIsValid: false,
       }
