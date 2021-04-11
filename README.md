@@ -60,9 +60,9 @@ import { defineComponent } from "vue";
 import reactiveConf from "@/conf";
 
 export default defineComponent({
-  data() {
+  setup() {
     return {
-      prop1: reactiveConf,
+      reactiveConf,
     };
   }
 });
