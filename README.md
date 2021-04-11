@@ -7,6 +7,7 @@ A set of stateful data classes with reactive properties
 - [Reactive data class](#base-reactive-class): base class with reactive properties
 - [Persistent data class](#persistent-data-class): a class that persists it's own state to localstorage
 - [Debounced data class](#debounced-data-class): a class where properties are set after a delay
+- [Rest data class](#rest-data-class): a class that handles rest requests
 
 ```bash
 npm install rxclass
