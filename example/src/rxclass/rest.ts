@@ -1,23 +1,22 @@
-import { ref, Ref } from "@vue/reactivity";
+import { computed, ref } from "@vue/reactivity";
 import RxClass from "./base";
+import { RxParam } from "./interfaces";
 
 
-export default abstract class RxRestClass extends RxClass {
+export default class RxRestClass extends RxClass {
   public objectDataset = ref<Record<string, any>>({}); // eslint-disable-line
   public arrayDataset = ref<Array<any>>([]); // eslint-disable-line
-  private _isLoading = ref<boolean>(false);
+  public isLoading = ref<boolean>(false);
+  public hasArrayData = computed<boolean>(() => this.arrayDataset.value.length > 0);
+  public hasObjectData = computed<boolean>(() => this.objectDataset.value.length > 0);
   private credentials: string | null;
 
   public serverUrl: string;
 
-  constructor(serverUrl?: string, state: Record<string, any> = {}, credentials?: string) { // eslint-disable-line
+  constructor(serverUrl?: string, state: Record<string, any | RxParam> = {}, credentials?: string) { // eslint-disable-line
     super(state)
     this.serverUrl = serverUrl ?? "";
     this.credentials = credentials ?? null;
-  }
-
-  get isLoading(): Ref<boolean> {
-    return this._isLoading;
   }
 
   private get getHeader(): RequestInit {
@@ -34,30 +33,30 @@ export default abstract class RxRestClass extends RxClass {
   }
 
   async fetchGetObject(url: string): Promise<Record<string, any>> { // eslint-disable-line
-    this._isLoading.value = true;
+    this.isLoading.value = true;
     const uri = this.serverUrl + url;
     const response = await fetch(uri, this.getHeader);
-    //console.log("DATA", response)
     if (!response.ok) {
+      this.isLoading.value = false;
       throw new Error(response.statusText);
     }
     const data = await response.json() as Record<string, any>; // eslint-disable-line
     this.objectDataset.value = data;
-    this._isLoading.value = false;
+    this.isLoading.value = false;
     return data;
   }
 
   async fetchGetArray<T>(url: string): Promise<Array<T>> {
-    this._isLoading.value = true;
+    this.isLoading.value = true;
     const uri = this.serverUrl + url;
     const response = await fetch(uri, this.getHeader);
-    //console.log("DATA", response)
     if (!response.ok) {
+      this.isLoading.value = false;
       throw new Error(response.statusText);
     }
-    const data = await response.json() as Array<T>; // eslint-disable-line
+    const data = await response.json() as Array<T>;
     this.arrayDataset.value = data;
-    this._isLoading.value = false;
+    this.isLoading.value = false;
     return data;
   }
 }

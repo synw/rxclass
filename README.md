@@ -1,6 +1,6 @@
 # Rxclass
 
-A set of stateful abstract classes with reactive properties
+A set of stateful data classes with reactive properties
 
 - [Reactive data class](#base-reactive-class): base class with reactive properties
 - [Persistent data class](#persistent-data-class): a class that persists it's own state to localstorage
@@ -59,7 +59,31 @@ import reactiveConf from "@/conf";
 export default defineComponent({
   data() {
     return {
-      prop1: reactiveConf,
+      prop1: reactiveConf,## Rest data class
+
+A class with rest network methods to manipulate data
+
+```typescript
+import { RxRestClass } from "rxclass";
+
+export default class ReactiveDataModel extends RxRestClass {
+  constructor() {// eslint-disable-line
+    const serverUrl = "http://localhost:8000"
+    super(serverUrl)
+  }
+}
+
+const dataManager = new ReactiveDataModel()
+// get array data
+const data = await dataManager.fetchGetArray<Array<Record<string, any>>>("/some/endpoint")
+// the data is now available in a reactive prop
+console.log(dataManager.arrayDataset)
+
+// get object data
+const data2 = dataManager.fetchGetObject("/some/endpoint")
+// the data is now available in a reactive prop
+console.log(dataManager.objectDataset)
+```
     };
   }
 });
@@ -166,6 +190,32 @@ export default defineComponent({
   },
 });
 </script>
+```
+
+## Rest data class
+
+A class with rest network methods to manipulate data
+
+```typescript
+import { RxRestClass } from "rxclass";
+
+export default class ReactiveDataModel extends RxRestClass {
+  constructor() {
+    const serverUrl = "http://localhost:8000"
+    super(serverUrl)
+  }
+}
+
+const dataManager = new ReactiveDataModel()
+// get array data
+const data = await dataManager.fetchGetArray<Array<Record<string, any>>>("/some/endpoint")
+// the data is now available in a reactive prop
+console.log(dataManager.arrayDataset)
+
+// get object data
+const data2 = dataManager.fetchGetObject("/some/endpoint")
+// the data is now available in a reactive prop
+console.log(dataManager.objectDataset)
 ```
 
 ## Examples

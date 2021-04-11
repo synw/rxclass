@@ -2,8 +2,9 @@
   <div>
     <div id="nav">
       <router-link to="/rxclass">RxClass</router-link> |
-      <router-link to="/rxstorageclass">RxStorageClass</router-link> |
-      <router-link to="/rxdebouncedclass">RxDebouncedClass</router-link>
+      <router-link to="/rxstorageclass">RxStorage</router-link> |
+      <router-link to="/rxdebouncedclass">RxDebounced</router-link> |
+      <router-link to="/rxrestclass">RxRest</router-link>
     </div>
     <router-view />
   </div>

@@ -21,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "github.com/synw/rxclass"
+    "url": "https://github.com/synw/rxclass"
   },
   "keywords": [
     "reactivity",

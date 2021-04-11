@@ -15,7 +15,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/rxdebouncedclass',
-    component: () => import('../views/RxdebouncedView.vue')
+    component: () => import('../views/RxDebouncedView.vue')
+  },
+  {
+    path: '/rxrestclass',
+    component: () => import('../views/RxRestView.vue')
   }
 ]
 
