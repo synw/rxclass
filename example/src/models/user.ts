@@ -1,6 +1,6 @@
-import RxStorageClass from "../rxclass/persistence";
+import RxStorage from "../rxclass/persistence";
 
-export default class User extends RxStorageClass {
+export default class User extends RxStorage {
 
   constructor() {
     console.log("Build user")

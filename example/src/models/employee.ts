@@ -1,4 +1,4 @@
-import { RxRestClass } from "@/rxclass";
+import { RxRest } from "@/rxclass";
 import { ref } from "@vue/reactivity";
 
 interface EmployeeParams {
@@ -23,14 +23,14 @@ class Employee {
   }
 }
 
-class Employees extends RxRestClass {
+class Employees extends RxRest {
   public all = ref<Array<Employee>>([]);
 
   constructor() {
     super("http://localhost:8080");
   }
 
-  async load() {
+  async load(): Promise<void> {
     const uri = "/employees.json";
     const data = await this.fetchGetArray<Record<string, string>>(uri);
     const employees = new Array<Employee>();

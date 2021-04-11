@@ -2,7 +2,7 @@ import { Ref, customRef, reactive } from "@vue/reactivity";
 import RxClass from "./base";
 import { RxParam, PropCallback } from "./interfaces";
 
-export default abstract class RxStorageClass extends RxClass {
+export default abstract class RxStorage extends RxClass {
   private _key: string;
   private _store: Record<string, any> = {}; // eslint-disable-line
   private _scallbacks: Record<string, PropCallback> = {}; // eslint-disable-line

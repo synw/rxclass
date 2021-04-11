@@ -96,7 +96,7 @@ All the store data will be automatically persisted to localstorage
 ```typescript
 import { RxStorageClass } from "rxclass";
 
-export default class User extends RxStorageClass {
+export default class User extends RxStorage {
   public name: string;
 
   constructor(name: string) {
@@ -175,7 +175,7 @@ A class with rest network methods to manipulate data
 ```typescript
 import { RxRestClass } from "rxclass";
 
-export default class ReactiveDataModel extends RxRestClass {
+export default class ReactiveDataModel extends RxRest {
   constructor() {
     const serverUrl = "http://localhost:8000"
     super(serverUrl)

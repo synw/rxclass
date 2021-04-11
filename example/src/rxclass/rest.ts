@@ -3,7 +3,7 @@ import RxClass from "./base";
 import { RxParam } from "./interfaces";
 
 
-export default class RxRestClass extends RxClass {
+export default class RxRest extends RxClass {
   public objectDataset = ref<Record<string, any>>({}); // eslint-disable-line
   public arrayDataset = ref<Array<any>>([]); // eslint-disable-line
   public isLoading = ref<boolean>(false);
