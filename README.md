@@ -59,31 +59,7 @@ import reactiveConf from "@/conf";
 export default defineComponent({
   data() {
     return {
-      prop1: reactiveConf,## Rest data class
-
-A class with rest network methods to manipulate data
-
-```typescript
-import { RxRestClass } from "rxclass";
-
-export default class ReactiveDataModel extends RxRestClass {
-  constructor() {// eslint-disable-line
-    const serverUrl = "http://localhost:8000"
-    super(serverUrl)
-  }
-}
-
-const dataManager = new ReactiveDataModel()
-// get array data
-const data = await dataManager.fetchGetArray<Array<Record<string, any>>>("/some/endpoint")
-// the data is now available in a reactive prop
-console.log(dataManager.arrayDataset)
-
-// get object data
-const data2 = dataManager.fetchGetObject("/some/endpoint")
-// the data is now available in a reactive prop
-console.log(dataManager.objectDataset)
-```
+      prop1: reactiveConf,
     };
   }
 });
