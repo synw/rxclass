@@ -94,7 +94,7 @@ The callback will be executed each time the property is changed
 All the store data will be automatically persisted to localstorage
 
 ```typescript
-import { RxStorageClass } from "rxclass";
+import { RxStorage } from "rxclass";
 
 export default class User extends RxStorage {
   public name: string;
@@ -173,7 +173,7 @@ export default defineComponent({
 A class with rest network methods to manipulate data
 
 ```typescript
-import { RxRestClass } from "rxclass";
+import { RxRest } from "rxclass";
 
 export default class ReactiveDataModel extends RxRest {
   constructor() {
