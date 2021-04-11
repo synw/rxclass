@@ -1,5 +1,7 @@
 # Rxclass
 
+[![pub package](https://img.shields.io/npm/v/rxclass)](https://www.npmjs.com/package/rxclass)
+
 A set of stateful data classes with reactive properties
 
 - [Reactive data class](#base-reactive-class): base class with reactive properties
