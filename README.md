@@ -136,7 +136,7 @@ A class where properties are set after a delay. Form example:
 <template>
   <p>Name: <input type="text" v-model="form.debounced.name.value" /></p>
   <div v-if="form.nameIsValid.value === true">Valid</div>
-  <div v-else>Invalid</div>
+  <div v-else-if="form.nameIsValid.value === false">Invalid</div>
 </template>
 
 <script lang="ts">
