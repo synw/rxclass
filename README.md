@@ -161,7 +161,7 @@ export default defineComponent({
       },
       // regular ephemeral state
       {
-        nameIsValid: false,
+        nameIsValid: null, // tristate: null, false or true
       }
     );
 
