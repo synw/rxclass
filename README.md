@@ -75,7 +75,7 @@ Add a callback when a prop is modified:
 
 ```typescript
 import { RxParam } from "rxclass";
-import RxClass from "rxclass";
+import { RxClass } from "rxclass";
 
 export default class ReactiveConf extends RxClass {
   constructor() {
@@ -141,7 +141,7 @@ A class where properties are set after a delay. Form example:
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RxParam, RxDebounced } from "rxclass";
+import { RxDebounced } from "rxclass";
 
 export default defineComponent({
   setup() {
@@ -157,7 +157,7 @@ export default defineComponent({
               form.nameIsValid.value = false;
             }
           },
-        } as RxParam,
+        },
       },
       // regular ephemeral state
       {
