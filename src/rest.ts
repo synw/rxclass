@@ -1,7 +1,5 @@
 import { computed, ref } from "@vue/reactivity";
 import RxClass from "./base";
-import { RxParam } from "./interfaces";
-
 
 export default class RxRest extends RxClass {
   public objectDataset = ref<Record<string, any>>({}); // eslint-disable-line
@@ -13,7 +11,10 @@ export default class RxRest extends RxClass {
 
   public serverUrl: string;
 
-  constructor(serverUrl?: string, state: Record<string, any | RxParam> = {}, credentials?: string) { // eslint-disable-line
+  constructor(
+    serverUrl?: string,
+    state: Record<string, any | { value: any, callback: (value: any) => any }> = {},
+    credentials?: string) {
     super(state)
     this.serverUrl = serverUrl ?? "";
     this.credentials = credentials ?? null;
