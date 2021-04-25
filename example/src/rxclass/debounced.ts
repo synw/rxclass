@@ -1,6 +1,6 @@
 import { Ref, customRef, reactive } from "@vue/reactivity";
 import RxClass from "./base";
-import { RxParam, PropCallback } from "./interfaces";
+import { PropCallback } from "./interfaces";
 
 
 export default class RxDebounced extends RxClass {
@@ -9,16 +9,19 @@ export default class RxDebounced extends RxClass {
   private _dcallbacks: Record<string, PropCallback> = {}; // eslint-disable-line
   public debounced: Record<string, Ref<any>> = {}; // eslint-disable-line
 
-  constructor(debounced: Record<string, any | RxParam>, state: Record<string, any | RxParam> = {}, delay: number = 400) {// eslint-disable-line
+  constructor(
+    debounced: Record<string, any | { value: any, callback: (value: any) => any }>,
+    state: Record<string, any | { value: any, callback: (value: any) => any }> = {},
+    delay: number = 400) {
     super(state);
     const instance = this; // eslint-disable-line
     for (const key of Object.keys(debounced)) {
       this._timeouts[key] = null;
       let val: any; // eslint-disable-line
       if ((debounced[key] !== null) && (debounced[key].callback !== undefined) && (debounced[key].value !== undefined)) {
-        const param = debounced[key] as RxParam;
+        const param = debounced[key] as { value: any, callback: (value: any) => any };
         val = param.value;
-        this._dcallbacks[key] = param.callback;
+        this._dcallbacks[key] = param.callback as PropCallback;
       } else {
         val = debounced[key];
       }

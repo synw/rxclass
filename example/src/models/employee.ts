@@ -1,5 +1,5 @@
-import { RxRest } from "@/rxclass";
 import { ref } from "@vue/reactivity";
+import { RxRest } from "../rxclass";
 
 interface EmployeeParams {
   id: number;

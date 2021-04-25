@@ -1,6 +1,6 @@
 import { Ref, customRef, reactive } from "@vue/reactivity";
 import RxClass from "./base";
-import { RxParam, PropCallback } from "./interfaces";
+import { PropCallback } from "./interfaces";
 
 export default abstract class RxStorage extends RxClass {
   private _key: string;
@@ -8,16 +8,19 @@ export default abstract class RxStorage extends RxClass {
   private _scallbacks: Record<string, PropCallback> = {}; // eslint-disable-line
   public store: Record<string, Ref<any>> = {}; // eslint-disable-line
 
-  constructor(key: string, store: Record<string, any | RxParam>, state: Record<string, any | RxParam> = {}) {// eslint-disable-line
+  constructor(
+    key: string,
+    store: Record<string, any | { value: any, callback: (value: any) => any }>,
+    state: Record<string, any | { value: any, callback: (value: any) => any }> = {}) {// eslint-disable-line
     super(state)
     this._key = key;
     const instance = this; // eslint-disable-line
     for (const key of Object.keys(store)) {
       let val: any; // eslint-disable-line
       if ((store[key] !== null) && (store[key].callback !== undefined) && (store[key].value !== undefined)) {
-        const param = store[key] as RxParam;
+        const param = store[key] as { value: any, callback: (value: any) => any };
         val = param.value;
-        this._scallbacks[key] = param.callback;
+        this._scallbacks[key] = param.callback as PropCallback;
       } else {
         val = store[key];
       }

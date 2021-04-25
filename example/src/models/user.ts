@@ -1,4 +1,4 @@
-import RxStorage from "../rxclass/persistence";
+import { RxStorage } from "../rxclass";
 
 export default class User extends RxStorage {
 

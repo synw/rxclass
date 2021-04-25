@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { RxParam, RxDebounced } from "../rxclass";
+import { RxDebounced } from "../rxclass";
 
 export default defineComponent({
   setup() {
@@ -21,7 +21,7 @@ export default defineComponent({
               form.nameIsValid.value = false;
             }
           },
-        } as RxParam,
+        },
       },
       {
         nameIsValid: false,
