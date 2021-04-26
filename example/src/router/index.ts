@@ -10,15 +10,19 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/RxClassView.vue')
   },
   {
-    path: '/rxstorageclass',
+    path: '/rxstorage',
     component: () => import('../views/RxStorageClassView.vue')
   },
   {
-    path: '/rxdebouncedclass',
+    path: '/rxdebounced',
     component: () => import('../views/RxDebouncedView.vue')
   },
   {
-    path: '/rxrestclass',
+    path: '/rxinput',
+    component: () => import('../views/RxInputView.vue')
+  },
+  {
+    path: '/rxrest',
     component: () => import('../views/RxRestView.vue')
   }
 ]

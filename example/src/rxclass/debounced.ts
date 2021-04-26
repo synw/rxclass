@@ -10,16 +10,16 @@ export default class RxDebounced extends RxClass {
   public debounced: Record<string, Ref<any>> = {}; // eslint-disable-line
 
   constructor(
-    debounced: Record<string, any | { value: any, callback: (value: any) => any }>,
-    state: Record<string, any | { value: any, callback: (value: any) => any }> = {},
-    delay: number = 400) {
+    debounced: Record<string, any | { value: any, callback: (value: any) => any }>, // eslint-disable-line
+    state: Record<string, any | { value: any, callback: (value: any) => any }> = {}, // eslint-disable-line
+    delay = 400) {
     super(state);
     const instance = this; // eslint-disable-line
     for (const key of Object.keys(debounced)) {
       this._timeouts[key] = null;
       let val: any; // eslint-disable-line
       if ((debounced[key] !== null) && (debounced[key].callback !== undefined) && (debounced[key].value !== undefined)) {
-        const param = debounced[key] as { value: any, callback: (value: any) => any };
+        const param = debounced[key] as { value: any, callback: (value: any) => any }; // eslint-disable-line
         val = param.value;
         this._dcallbacks[key] = param.callback as PropCallback;
       } else {
