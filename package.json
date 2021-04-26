@@ -1,6 +1,6 @@
 {
   "name": "rxclass",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A set of stateful data classes with reactive properties",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
