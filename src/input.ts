@@ -3,13 +3,13 @@ import RxClass from "./base";
 
 export default class RxInput<T> extends RxClass {
   public id: string;
-  public validator: (value: T) => boolean;
+  public validator: (value: T) => boolean | null;
   private _timeout: NodeJS.Timeout | null = null;
 
   constructor({ id, value, validator, validationDelay = 400 }: {
     id: string,
     value: T,
-    validator: (value: T) => boolean,
+    validator: (value: T) => boolean | null,
     validationDelay?: number
   }) {
     super({ isValid: null, _value: value });
