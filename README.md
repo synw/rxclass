@@ -75,7 +75,6 @@ export default defineComponent({
 Add a callback when a prop is modified:
 
 ```typescript
-import { RxParam } from "rxclass";
 import { RxClass } from "rxclass";
 
 export default class ReactiveConf extends RxClass {
@@ -84,7 +83,7 @@ export default class ReactiveConf extends RxClass {
       prop5: {
         value: "val",
         callback: (v: string) => console.log("Prop 5 changed to", v)
-      } as RxParam
+      }
     };
     super(state);
   }
